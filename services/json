@@ -1,0 +1,29 @@
+{"System":{
+"Build": 120,
+"Unit": 0,
+"Uptime": 0,
+"Free RAM": 28080
+},
+"Sensors":[
+{
+"TaskName": "dht",
+"Temperature": 0.00,
+"Humidity": 0.00
+},
+{
+"TaskName": "luz",
+"Switch": 1.00
+},
+{
+"TaskName": "Puerta",
+"Switch": 0.00
+},
+{
+"TaskName": "Puerta1",
+"Switch": 0.00
+},
+{
+"TaskName": "SwPuerta1",
+"Switch": 1.00
+}
+]}

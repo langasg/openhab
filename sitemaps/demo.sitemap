@@ -1,0 +1,234 @@
+sitemap demo label="Langas House"
+{
+	Frame {
+		Group item=gFF label="First Floor" icon="firstfloor"
+		Group item=gGF label="Ground Floor" icon="groundfloor"
+		Group item=gC label="Cellar" icon="cellar"	
+		Group item=Outdoor icon="garden" 
+	}
+
+	Frame label="Calefaccion"{
+        Text item=Heating_GF_Kitchen label="Calefaccion"
+        {
+        Frame label="Estado"
+        {
+        Switch item=Heating_GF_Kitchen label="Caldera"
+        Switch item=Auto_Heating_GF_Kitchen label="Caldera programada"
+        Text item=Temperature_FF_Bed label="Temperatura Dormitorio [%.2f   C]"
+        Text item=Temperature_GF_Living  label="Temperatura Salon [%.2f   C]"
+        Text item=gasto_caldera  label="Gasto Caldera [%d]"
+        }
+        Frame label="Periodo 1"{
+        Setpoint item=Temperature_Setpoint_T1 minValue=16 maxValue=28 step=0.1
+        Setpoint item=Temperature_Setpoint_T1S minValue=16 maxValue=28 step=0.1
+        Setpoint item=Cal_Hora1_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min1_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+        Setpoint item=Cal_Hora1_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min1_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+        }
+        Frame label="Periodo 2"{
+        Setpoint item=Temperature_Setpoint_T2 minValue=16 maxValue=28 step=0.1
+        Setpoint item=Temperature_Setpoint_T2S minValue=16 maxValue=28 step=0.1
+        Setpoint item=Cal_Hora2_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min2_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+        Setpoint item=Cal_Hora2_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min2_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+         }
+        Frame label="Periodo 3"{
+        Setpoint item=Temperature_Setpoint_T3 minValue=16 maxValue=28 step=0.1
+        Setpoint item=Temperature_Setpoint_T3S minValue=16 maxValue=28 step=0.1
+        Setpoint item=Cal_Hora3_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min3_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+        Setpoint item=Cal_Hora3_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min3_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+         }
+        Frame label="Temperaturas Valle"{
+        Setpoint item=Temperature_Setpoint_Valle minValue=16 maxValue=28 step=0.1
+        Setpoint item=Temperature_Setpoint_ValleS minValue=16 maxValue=28 step=0.1
+        }
+        }
+        }
+
+	Frame label="Temperatura / Humedad Living Room" {
+                Text item=Temperature_GF_Living valuecolor=[TempHumiLiv_LastUpdate=="Uninitialized"="lightgray",TempHumiLiv_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+                        Frame {
+                                Text item=Temperature_GF_Living_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Temperature_GF_Living_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Humidity_GF_Living
+                                Text item=Humidex_GF_Living
+                                Text item=TempHumiLiv_LastUpdate valuecolor=[TempHumiLiv_LastUpdate>120="orange", TempHumiLiv_LastUpdate>300="red"]
+				Text item=Pressure_BMP_GF_Living
+				Text item=Temperature_BMP_GF_Living
+                        }
+                        Frame {
+                                Switch item=TempHumiLiv_Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                                Chart item=TempHumiLiv_Chart period=h refresh=6000 visibility=[TempHumiLiv_Chart_Period==0]
+                                Chart item=TempHumiLiv_Chart period=D refresh=30000 visibility=[TempHumiLiv_Chart_Period==1, TempHumiLiv_Chart_Period=="Uninitialized"]
+                                Chart item=TempHumiLiv_Chart period=W refresh=30000 visibility=[TempHumiLiv_Chart_Period==2]
+                        }
+			Frame {
+                                Switch item=PresLiv_Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                                Chart item=PresLiv_Chart period=h refresh=6000 visibility=[PresLiv_Chart_Period==0]
+                                Chart item=PresLiv_Chart period=D refresh=30000 visibility=[PresLiv_Chart_Period==1, PresLiv_Chart_Period=="Uninitialized"]
+                                Chart item=PresLiv_Chart period=W refresh=30000 visibility=[PresLiv_Chart_Period==2]
+                        }
+                }
+        }
+
+
+	Frame label="Temperatura / Humedad BedRoom" {
+                Text item=Temperature_FF_Bed valuecolor=[TempHumiBed_LastUpdate=="Uninitialized"="lightgray",TempHumiBed_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+                        Frame {
+                                Text item=Temperature_FF_Bed_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Temperature_FF_Bed_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Humidity_FF_Bed
+                                Text item=Humidex_FF_Bed
+                                Text item=TempHumiBed_LastUpdate valuecolor=[TempHumiBed_LastUpdate>120="orange", TempHumiBed_LastUpdate>300="red"]
+                        }
+                        Frame {
+                                Switch item=TempHumiBed_Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                                Chart item=TempHumiBed_Chart period=h refresh=6000 visibility=[TempHumiBed_Chart_Period==0, TempHumiBed_Chart_Period=="Uninitialized"]
+                                Chart item=TempHumiBed_Chart period=D refresh=30000 visibility=[TempHumiBed_Chart_Period==1]
+                                Chart item=TempHumiBed_Chart period=W refresh=30000 visibility=[TempHumiBed_Chart_Period==2]
+                        }
+                }
+        }
+
+Frame label="Temperatura / Humedad Cocina" {
+                Text item=Temperature_GF_Kitchen valuecolor=[TempHumiKit_LastUpdate=="Uninitialized"="lightgray",TempHumiKit_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+                        Frame {
+                                Text item=Temperature_GF_Kitchen_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Temperature_GF_Kitchen_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+                                Text item=Humidity_GF_Kitchen
+                                Text item=Humidex_GF_Kitchen
+                                Text item=TempHumiKit_LastUpdate valuecolor=[TempHumiKit_LastUpdate>120="orange", TempHumiKit_LastUpdate>300="red"]
+                        }
+                        Frame {
+                                Switch item=TempHumiKit_Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+                                Chart item=TempHumiKit_Chart period=h refresh=6000 visibility=[TempHumiKit_Chart_Period==0, TempHumiKit_Chart_Period=="Uninitialized"]
+                                Chart item=TempHumiKit_Chart period=D refresh=30000 visibility=[TempHumiKit_Chart_Period==1]
+                                Chart item=TempHumiKit_Chart period=W refresh=30000 visibility=[TempHumiKit_Chart_Period==2]
+                        }
+                }
+        }
+
+
+	Frame label="Weather" {
+		Text item=Weather_Temperature valuecolor=[Weather_LastUpdate=="Uninitialized"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Temp_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Temp_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Humidity
+				Text item=Weather_Humidex
+				Text item=Weather_LastUpdate valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=Weather_Chart_Period label="Chart Period" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=6000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="Uninitialized"]
+				Chart item=Weather_Chart period=D refresh=30000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=30000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+	}
+	Frame label="Date" {
+		Text item=Date
+	}
+        Frame label="XBMC  Family Room" {
+		Text item=XbmcFamily_State label="State [%s]"
+		Text item=XbmcFamily_Title label="Title [%s]" visibility=[XbmcFamily_State==Play, XbmcFamily_State==Pause]
+		Text item=XbmcFamily_ShowTitle label="Show [%s]" visibility=[XbmcFamily_State==Play, XbmcFamily_State==Pause]
+		Switch item=XbmcFamily_PlayPause label="Play" icon="play" mappings=[ON="Play"] visibility=[XbmcFamily_State==Pause]
+		Switch item=XbmcFamily_PlayPause label="Pause" icon="pause" mappings=[ON="Pause"] visibility=[XbmcFamily_State==Play]
+		Switch item=XbmcFamily_Stop label="Stop" mappings=[ON="Stop"] visibility=[XbmcFamily_State==Play, XbmcFamily_State==Pause]
+	}
+ 	Frame label="XBMC  Living" {
+                Text item=XbmcLiving_State label="State [%s]"
+                Text item=XbmcLiving_Title label="Title [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+                Text item=XbmcLiving_ShowTitle label="Show [%s]" visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+                Switch item=XbmcLiving_PlayPause label="Play" icon="play" mappings=[ON="Play"] visibility=[XbmcLiving_State==Pause]
+                Switch item=XbmcLiving_PlayPause label="Pause" icon="pause" mappings=[ON="Pause"] visibility=[XbmcLiving_State==Play]
+                Switch item=XbmcLiving_Stop label="Stop" mappings=[ON="Stop"] visibility=[XbmcLiving_State==Play, XbmcLiving_State==Pause]
+        } 
+Frame label="Calefaccion"{
+	Text label="Calefaccion"
+	{
+	Frame label="Estado"
+	{
+	Switch item=Heating_GF_Kitchen label="Caldera"
+	Switch item=Auto_Heating_GF_Kitchen label="Caldera programada"
+	Text item=Temperature_FF_Bed label="Temperatura Dormitorio [%.2f   C]"
+	Text item=Temperature_GF_Living  label="Temperatura Salon [%.2f   C]"
+		}
+	Frame label="Periodo 1"{
+	Setpoint item=Temperature_Setpoint_T1 minValue=16 maxValue=28 step=0.1
+	Setpoint item=Temperature_Setpoint_T1S minValue=16 maxValue=28 step=0.1
+        Setpoint item=Cal_Hora1_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+	Setpoint item=Cal_Min1_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+	Setpoint item=Cal_Hora1_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min1_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+	}
+	Frame label="Periodo 2"{
+	Setpoint item=Temperature_Setpoint_T2 minValue=16 maxValue=28 step=0.1
+	Setpoint item=Temperature_Setpoint_T2S minValue=16 maxValue=28 step=0.1
+        Setpoint item=Cal_Hora2_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min2_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+	Setpoint item=Cal_Hora2_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min2_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+	 }
+        Frame label="Periodo 3"{
+	Setpoint item=Temperature_Setpoint_T3 minValue=16 maxValue=28 step=0.1
+	Setpoint item=Temperature_Setpoint_T3S minValue=16 maxValue=28 step=0.1
+	Setpoint item=Cal_Hora3_ON minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min3_ON minValue=0 maxValue=60 step=1 icon="clock-on"
+	Setpoint item=Cal_Hora3_OFF minValue=0 maxValue=24 step=1 icon="clock-on"
+        Setpoint item=Cal_Min3_OFF minValue=0 maxValue=60 step=1 icon="clock-on"
+	 }
+        Frame label="Temperaturas Valle"{
+	Setpoint item=Temperature_Setpoint_Valle minValue=16 maxValue=28 step=0.1
+	Setpoint item=Temperature_Setpoint_ValleS minValue=16 maxValue=28 step=0.1
+	}
+	}
+	}
+	Frame label="Demo" {
+		Text label="Group Demo" icon="firstfloor" {
+			Switch item=Lights mappings=[OFF="All Off"]
+			Group item=Heating
+			Group item=Windows
+			Text item=Temperature
+		}
+		Text label="Widget Overview" icon="chart" {
+			Frame label="Binary Widgets" {
+				Switch item=DemoSwitch label="Toggle Switch"
+				Switch item=DemoSwitch label="Button Switch" mappings=[ON="On"]
+			}
+			Frame label="Discrete Widgets" {
+				Selection item=Scene_General label="Scene Selection" mappings=[0=off, 1=TV, 2=Dinner, 3=Reading]
+				Switch item=Scene_General label="Scene" mappings=[1=TV, 2=Dinner, 3=Reading]
+				Setpoint item=Temperature_Setpoint minValue=16 maxValue=28 step=0.5
+			}
+			Frame label="Percent-based Widgets" {
+				Slider item=DimmedLight switchSupport
+				Colorpicker item=RGBLight icon="slider"
+				Switch item=DemoShutter
+				Slider item=DemoBlinds
+			}
+			Frame label="Map/Location" {
+				Mapview item=DemoLocation height=10
+			}
+			
+		}
+		Text label="Multimedia" icon="video" {
+			Frame label="Radio Control" {
+				Selection item=Radio_Station mappings=[0=off, 1=HR3, 2=SWR3, 3=FFH]
+				Slider item=Volume
+			}
+			Frame label="Multimedia Widgets" {
+				Image url="http://localhost:8080/images/splash-ipad-h.png" label="openHAB" {
+					Text label="http://www.openHAB.org" icon="icon"
+				}
+				Video url="http://demo.openhab.org/Hue.m4v"
+				Webview url="http://heise-online.mobi/" height=8
+			}
+		}
+	}
+}

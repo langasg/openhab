@@ -1,0 +1,6 @@
+yahooweather:weather:vaciamadrid [ location=776409 ]
+astro:sun:home   [ geolocation="40.3510851,-3.5170123", interval=60 ]
+astro:moon:home  [ geolocation="40.3510851,-3.5170123", interval=60 ]
+ntp:ntp:demo [ hostname="nl.pool.ntp.org", refreshInterval=60, refreshNtp=30 ]
+
+// vim: syntax=Xtend

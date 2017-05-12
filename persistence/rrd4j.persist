@@ -1,0 +1,35 @@
+// persistence strategies have a name and a definition and are referred to in the "Items" section
+Strategies {
+	// for rrd charts, we need a cron strategy
+	everyMinute : "0 * * * * ?"
+}
+
+Items {
+	DemoSwitch,NoOfLights,Window_GF_Toilet,Heating* : strategy = everyChange, everyMinute, restoreOnStartup
+	
+	// let's only store temperature values in rrd
+	Temperature*,Weather_Chart* : strategy = everyMinute, restoreOnStartup
+	Pressure_BMP_GF_Living : strategy = everyMinute, restoreOnStartup
+	Temperature_BMP_GF_Living : strategy = everyMinute, restoreOnStartup
+	Cal_Hora1_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min1_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Hora1_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min1_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Hora2_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min2_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Hora2_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min2_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Hora3_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min3_ON: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Hora3_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Cal_Min3_OFF: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_Valle: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T1: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T2: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T3: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_ValleS: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T1S: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T2S: strategy = everyChange, everyMinute, restoreOnStartup
+	Temperature_Setpoint_T3S: strategy = everyChange, everyMinute, restoreOnStartup
+	gasto_caldera: strategy = everyChange, everyMinute, restoreOnStartup
+}

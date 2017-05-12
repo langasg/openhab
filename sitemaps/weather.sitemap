@@ -1,0 +1,6 @@
+sitemap weather label="Weather Langas House"
+{
+        Frame {
+                Group item=weather label="Weather" icon="weather"
+		}
+}
